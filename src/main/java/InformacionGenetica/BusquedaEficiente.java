@@ -23,7 +23,6 @@ public class BusquedaEficiente {
         }
     }
 
-
     public static int busquedaLineal(List<String> words, String searchWord) {
         for (int i = 0; i < words.size(); i++) {
             if (words.get(i).equals(searchWord)) {
