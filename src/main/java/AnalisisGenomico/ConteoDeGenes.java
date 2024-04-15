@@ -1,18 +1,13 @@
 package AnalisisGenomico;
 
-public class ConteoDeGenes {
+public class ConteoDeGenes implements ContadorDeGenes {
 
-    public static void main(String[] args) {
-        String dna = "ATGAAATGAAAAATGTAGTAAATGAGAGAGATGTAATAG";
-        int count = contarGenes(dna);
-        System.out.println("Total de genes encontrados: " + count);
-    }
-
-    public static int contarGenes(String dna) {
+    @Override
+    public int contarGenes(String dna) {
         return contarGenesAux(dna, 0);
     }
 
-    private static int contarGenesAux(String dna, int index) {
+    private int contarGenesAux(String dna, int index) {
         if (dna.length() - index < 3) {
             return 0;
         }
@@ -30,7 +25,7 @@ public class ConteoDeGenes {
         }
     }
 
-    private static int encontrarFinalGen(String dna, int startIndex) {
+    private int encontrarFinalGen(String dna, int startIndex) {
         for (int i = startIndex; i < dna.length() - 2; i += 3) {
             String codon = dna.substring(i, i + 3);
             if (codon.equals("TAG") || codon.equals("TAA") || codon.equals("TGA")) {
@@ -38,5 +33,12 @@ public class ConteoDeGenes {
             }
         }
         return -1;
+    }
+
+    public static void main(String[] args) {
+        ContadorDeGenes counter = new ConteoDeGenes();
+        String dna = "ATGAAATGAAAAATGTAGTAAATGAGAGAGATGTAATAG";
+        int count = counter.contarGenes(dna);
+        System.out.println("Total de genes encontrados: " + count);
     }
 }
