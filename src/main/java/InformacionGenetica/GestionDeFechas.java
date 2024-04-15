@@ -7,7 +7,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
-public class GestionDeFechas {
+public class GestionDeFechas implements OrganizacionDias {
     private List<LocalDate> fechas;
     private DateTimeFormatter formatterEntrada;
     private DateTimeFormatter formatterSalida;
@@ -18,11 +18,13 @@ public class GestionDeFechas {
         this.formatterSalida = DateTimeFormatter.ofPattern(formatoSalida);
     }
 
+    @Override
     public void agregarFecha(String fechaTexto) {
         LocalDate fecha = LocalDate.parse(fechaTexto, formatterEntrada);
         fechas.add(fecha);
     }
 
+    @Override
     public void listarFechasOrdenadas() {
         Collections.sort(fechas);
         for (LocalDate fecha : fechas) {
@@ -32,17 +34,14 @@ public class GestionDeFechas {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-
         System.out.print("Introduce el formato de entrada de las fechas (ej. dd/MM/yyyy): ");
         String formatoEntrada = scanner.nextLine();
-
         System.out.print("Introduce el formato de salida de las fechas (ej. MM-dd-yyyy): ");
         String formatoSalida = scanner.nextLine();
 
-        GestionDeFechas manager = new GestionDeFechas(formatoEntrada, formatoSalida);
+        OrganizacionDias manager = new GestionDeFechas(formatoEntrada, formatoSalida);
 
         System.out.println("Gestión de Fechas para Experimentos");
-
         while (true) {
             System.out.print("Introduce una fecha en el formato especificado o 'salir' para terminar: ");
             String input = scanner.nextLine();
