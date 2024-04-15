@@ -1,47 +1,56 @@
 package InformacionGenetica;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
-import java.time.format.DateTimeFormatter;
 
 public class GestionDeFechas {
     private List<LocalDate> fechas;
-    private DateTimeFormatter formatter;
+    private DateTimeFormatter formatterEntrada;
+    private DateTimeFormatter formatterSalida;
 
-    public GestionDeFechas() {
+    public GestionDeFechas(String formatoEntrada, String formatoSalida) {
         fechas = new ArrayList<>();
-        formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        this.formatterEntrada = DateTimeFormatter.ofPattern(formatoEntrada);
+        this.formatterSalida = DateTimeFormatter.ofPattern(formatoSalida);
     }
 
-
-    public void agregarFecha(LocalDate fecha) {
+    public void agregarFecha(String fechaTexto) {
+        LocalDate fecha = LocalDate.parse(fechaTexto, formatterEntrada);
         fechas.add(fecha);
     }
 
     public void listarFechasOrdenadas() {
         Collections.sort(fechas);
         for (LocalDate fecha : fechas) {
-            System.out.println(formatter.format(fecha));
+            System.out.println(fecha.format(formatterSalida));
         }
     }
 
     public static void main(String[] args) {
-        GestionDeFechas manager = new GestionDeFechas();
         Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Introduce el formato de entrada de las fechas (ej. dd/MM/yyyy): ");
+        String formatoEntrada = scanner.nextLine();
+
+        System.out.print("Introduce el formato de salida de las fechas (ej. MM-dd-yyyy): ");
+        String formatoSalida = scanner.nextLine();
+
+        GestionDeFechas manager = new GestionDeFechas(formatoEntrada, formatoSalida);
+
         System.out.println("Gestión de Fechas para Experimentos");
 
         while (true) {
-            System.out.print("Introduce una fecha (formato dd-MM-yyyy) o 'salir' para terminar: ");
+            System.out.print("Introduce una fecha en el formato especificado o 'salir' para terminar: ");
             String input = scanner.nextLine();
             if ("salir".equalsIgnoreCase(input)) {
                 break;
             }
             try {
-                LocalDate fecha = LocalDate.parse(input);
-                manager.agregarFecha(fecha);
+                manager.agregarFecha(input);
             } catch (Exception e) {
                 System.out.println("Formato de fecha inválido. Por favor, intenta de nuevo.");
             }
