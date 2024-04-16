@@ -57,9 +57,11 @@ public class MejoraDeAlgoritmos implements Ordenamiento {
     }
 
     public static void main(String[] args) {
+        System.out.println("Este programa mejora el rendimiento de algoritmos de ordenamiento mediante la combinación de quicksort con sort de inserción para optimizar el ordenamiento de arreglos pequeños.");
         Ordenamiento sorter = new MejoraDeAlgoritmos();
         int[] arr = { 34, 8, 64, 51, 32, 21 };
         sorter.sort(arr);
+        System.out.print("Arreglo ordenado: ");
         for (int num : arr) {
             System.out.print(num + " ");
         }
