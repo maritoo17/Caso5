@@ -19,6 +19,7 @@ public class CombinacionesGeneticas implements CombinadorGenetico {
     }
 
     public static void main(String[] args) {
+        System.out.println("Este programa genera todas las combinaciones posibles de dos secuencias de alelos.");
         String alelo1 = "ATGC";
         String alelo2 = "TACG";
         CombinacionesGeneticas generador = new CombinacionesGeneticas();
