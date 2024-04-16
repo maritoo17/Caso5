@@ -33,10 +33,11 @@ public class GestionDeFechas implements OrganizacionDias {
     }
 
     public static void main(String[] args) {
+        System.out.println("Este programa permite al usuario agregar fechas en un formato especificado, organizarlas y mostrarlas ordenadamente en otro formato.");
         Scanner scanner = new Scanner(System.in);
         System.out.print("Introduce el formato de entrada de las fechas (ej. dd/MM/yyyy): ");
         String formatoEntrada = scanner.nextLine();
-        System.out.print("Introduce el formato de salida de las fechas (ej. MM-dd-yyyy): ");
+        System.out.print("Introduce el formato de salida de las fechas (ej. dd/MM/yyyy): ");
         String formatoSalida = scanner.nextLine();
 
         OrganizacionDias manager = new GestionDeFechas(formatoEntrada, formatoSalida);
