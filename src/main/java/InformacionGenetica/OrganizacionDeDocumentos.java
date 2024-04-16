@@ -20,6 +20,7 @@ public class OrganizacionDeDocumentos implements OrganizadorDeDocumentos {
     }
 
     public static void main(String[] args) {
+        System.out.println("Este programa ordena el contenido de un archivo de texto y guarda el resultado en un nuevo archivo.");
         String archivoEntrada = "src/main/java/InformacionGenetica/notas.txt";
         String archivoSalida = "src/main/java/InformacionGenetica/notas_ordenadas.txt";
         OrganizadorDeDocumentos organizer = new OrganizacionDeDocumentos();
