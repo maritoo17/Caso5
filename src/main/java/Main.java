@@ -28,7 +28,7 @@ public class Main {
                     CombinacionesGeneticas.main(args);
                     break;
                 case 2:
-                    ConteoDeGenes.main(args, scanner);
+                    ConteoDeGenes.main(args);
                     break;
                 case 3:
                     PotenciasYMaximos.main(args);

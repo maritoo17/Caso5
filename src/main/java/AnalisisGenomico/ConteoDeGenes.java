@@ -8,7 +8,7 @@ public class ConteoDeGenes implements ContadorDeGenes {
     private Scanner scanner;
 
     public ConteoDeGenes() {
-        scanner = new Scanner(System.in);
+        this.scanner = scanner;
     }
 
     @Override
@@ -56,6 +56,8 @@ public class ConteoDeGenes implements ContadorDeGenes {
     }
 
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
         System.out.println("Seleccione una opción:");
         System.out.println("1. Ingresar una secuencia de ADN.");
         System.out.println("2. Generar una secuencia de ADN aleatoria.");
@@ -75,7 +77,5 @@ public class ConteoDeGenes implements ContadorDeGenes {
         ContadorDeGenes counter = new ConteoDeGenes();
         int count = counter.contarGenes(dna);
         System.out.println("Total de genes encontrados: " + count);
-
-        scanner.close();
     }
 }
