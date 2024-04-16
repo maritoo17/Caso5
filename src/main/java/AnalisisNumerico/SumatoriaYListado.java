@@ -26,6 +26,7 @@ public class SumatoriaYListado implements OperacionesNumericas {
     }
 
     public static void main(String[] args) {
+        System.out.println("Este programa realiza la suma de los primeros n números naturales y lista números en un rango dado.");
         OperacionesNumericas operations = new SumatoriaYListado();
         int n = 10;
         int resultadoSuma = operations.sumaNaturales(n);
