@@ -1,5 +1,8 @@
 package AnalisisGenomico;
 
+import java.util.Random;
+import java.util.Scanner;
+
 public class ConteoDeGenes implements ContadorDeGenes {
 
     @Override
@@ -35,10 +38,39 @@ public class ConteoDeGenes implements ContadorDeGenes {
         return -1;
     }
 
+    private static String generarSecuenciaAleatoria(int longitud) {
+        Random random = new Random();
+        StringBuilder sb = new StringBuilder();
+        String bases = "ATGC";
+        for (int i = 0; i < longitud; i++) {
+            int index = random.nextInt(bases.length());
+            sb.append(bases.charAt(index));
+        }
+        return sb.toString();
+    }
+
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Seleccione una opción:");
+        System.out.println("1. Ingresar una secuencia de ADN.");
+        System.out.println("2. Generar una secuencia de ADN aleatoria.");
+        int opcion = scanner.nextInt();
+        scanner.nextLine();
+
+        String dna;
+        if (opcion == 1) {
+            System.out.println("Ingrese la secuencia de ADN para analizar:");
+            dna = scanner.nextLine();
+        } else {
+            int longitud = 50;
+            dna = generarSecuenciaAleatoria(longitud);
+            System.out.println("Secuencia de ADN aleatoria generada: " + dna);
+        }
+
         ContadorDeGenes counter = new ConteoDeGenes();
-        String dna = "ATGAAATGAAAAATGTAGTAAATGAGAGAGATGTAATAG";
         int count = counter.contarGenes(dna);
         System.out.println("Total de genes encontrados: " + count);
+
+        scanner.close();
     }
 }
