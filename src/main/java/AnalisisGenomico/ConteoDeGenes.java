@@ -5,6 +5,12 @@ import java.util.Scanner;
 
 public class ConteoDeGenes implements ContadorDeGenes {
 
+    private Scanner scanner;
+
+    public ConteoDeGenes() {
+        scanner = new Scanner(System.in);
+    }
+
     @Override
     public int contarGenes(String dna) {
         return contarGenesAux(dna, 0);
@@ -50,7 +56,6 @@ public class ConteoDeGenes implements ContadorDeGenes {
     }
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
         System.out.println("Seleccione una opción:");
         System.out.println("1. Ingresar una secuencia de ADN.");
         System.out.println("2. Generar una secuencia de ADN aleatoria.");

@@ -28,7 +28,7 @@ public class Main {
                     CombinacionesGeneticas.main(args);
                     break;
                 case 2:
-                    ConteoDeGenes.main(args);
+                    ConteoDeGenes.main(args, scanner);
                     break;
                 case 3:
                     PotenciasYMaximos.main(args);
@@ -50,6 +50,7 @@ public class Main {
                     break;
                 case 9:
                     System.out.println("Saliendo del programa...");
+                    scanner.close();
                     System.exit(0);
                 default:
                     System.out.println("Opción no válida. Intente de nuevo.");
