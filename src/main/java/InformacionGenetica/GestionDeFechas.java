@@ -58,6 +58,5 @@ public class GestionDeFechas implements OrganizacionDias {
 
         System.out.println("Fechas ordenadas:");
         manager.listarFechasOrdenadas();
-        scanner.close();
     }
 }
