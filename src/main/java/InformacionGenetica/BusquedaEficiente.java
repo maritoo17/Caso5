@@ -37,6 +37,7 @@ public class BusquedaEficiente implements BusquedaDePalabras {
     }
 
     public static void main(String[] args) {
+        System.out.println("Este programa realiza búsquedas lineales y binarias en una lista de palabras cargadas desde un archivo.");
         try {
             List<String> words = Files.readAllLines(Paths.get("notas.txt"));
             String searchWord = "palabra";
