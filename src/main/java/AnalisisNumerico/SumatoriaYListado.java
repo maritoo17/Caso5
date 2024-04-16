@@ -2,6 +2,7 @@ package AnalisisNumerico;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class SumatoriaYListado implements OperacionesNumericas {
 
@@ -26,15 +27,19 @@ public class SumatoriaYListado implements OperacionesNumericas {
     }
 
     public static void main(String[] args) {
-        System.out.println("Este programa realiza la suma de los primeros n números naturales y lista números en un rango dado.");
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Este programa realiza la suma de los primeros n números naturales y lista números desde 1 hasta n.");
+        System.out.print("Por favor, ingrese el número n hasta el cual desea listar y sumar los números naturales: ");
+        int n = scanner.nextInt();
+
         OperacionesNumericas operations = new SumatoriaYListado();
-        int n = 10;
         int resultadoSuma = operations.sumaNaturales(n);
         System.out.println("La suma de los primeros " + n + " números naturales es: " + resultadoSuma);
 
-        int inicio = 1;
-        int fin = 10;
-        List<Integer> listaNumeros = operations.listarNumeros(inicio, fin);
-        System.out.println("Listado de números del " + inicio + " al " + fin + ": " + listaNumeros);
+        List<Integer> listaNumeros = operations.listarNumeros(1, n);
+        System.out.println("Listado de números del 1 al " + n + ": " + listaNumeros);
+
+        scanner.close();
     }
 }
