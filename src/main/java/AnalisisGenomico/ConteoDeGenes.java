@@ -4,10 +4,9 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class ConteoDeGenes implements ContadorDeGenes {
-
     private Scanner scanner;
 
-    public ConteoDeGenes() {
+    public ConteoDeGenes(Scanner scanner) {
         this.scanner = scanner;
     }
 
@@ -20,12 +19,10 @@ public class ConteoDeGenes implements ContadorDeGenes {
         if (dna.length() - index < 3) {
             return 0;
         }
-
         int startIndex = dna.indexOf("ATG", index);
         if (startIndex == -1) {
             return 0;
         }
-
         int endIndex = encontrarFinalGen(dna, startIndex + 3);
         if (endIndex != -1) {
             return 1 + contarGenesAux(dna, endIndex + 3);
@@ -57,25 +54,28 @@ public class ConteoDeGenes implements ContadorDeGenes {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        ConteoDeGenes app = new ConteoDeGenes(scanner);
 
         System.out.println("Seleccione una opción:");
         System.out.println("1. Ingresar una secuencia de ADN.");
         System.out.println("2. Generar una secuencia de ADN aleatoria.");
+        System.out.println("Ingrese 1 para analizar una secuencia específica de ADN o 2 para generar y analizar una secuencia aleatoria.");
         int opcion = scanner.nextInt();
         scanner.nextLine();
 
         String dna;
         if (opcion == 1) {
-            System.out.println("Ingrese la secuencia de ADN para analizar:");
+            System.out.println("Usted ha elegido ingresar una secuencia de ADN. Por favor, introduzca la secuencia de ADN para su análisis:");
             dna = scanner.nextLine();
         } else {
             int longitud = 50;
             dna = generarSecuenciaAleatoria(longitud);
-            System.out.println("Secuencia de ADN aleatoria generada: " + dna);
+            System.out.println("Se ha generado una secuencia de ADN aleatoria. A continuación, se analizará la secuencia generada:");
+            System.out.println(dna);
         }
 
-        ContadorDeGenes counter = new ConteoDeGenes();
-        int count = counter.contarGenes(dna);
+        System.out.println("Análisis en progreso... Calculando el número de genes en la secuencia de ADN proporcionada.");
+        int count = app.contarGenes(dna);
         System.out.println("Total de genes encontrados: " + count);
     }
 }
