@@ -1,8 +1,13 @@
 package OptimizacionDeProcesos;
 
-public class MejoraDeAlgoritmos {
+public class MejoraDeAlgoritmos implements Ordenamiento {
 
-    private static void quicksort(int[] arr, int left, int right) {
+    @Override
+    public void sort(int[] arr) {
+        quicksort(arr, 0, arr.length - 1);
+    }
+
+    private void quicksort(int[] arr, int left, int right) {
         if (left + 10 <= right) {
             int pivot = medianOfThree(arr, left, right);
             int i = left, j = right - 1;
@@ -24,7 +29,7 @@ public class MejoraDeAlgoritmos {
         }
     }
 
-    private static int medianOfThree(int[] arr, int left, int right) {
+    private int medianOfThree(int[] arr, int left, int right) {
         int center = (left + right) / 2;
         if (arr[left] > arr[center]) swap(arr, left, center);
         if (arr[left] > arr[right]) swap(arr, left, right);
@@ -34,13 +39,13 @@ public class MejoraDeAlgoritmos {
         return arr[right - 1];
     }
 
-    private static void swap(int[] arr, int index1, int index2) {
+    private void swap(int[] arr, int index1, int index2) {
         int temp = arr[index1];
         arr[index1] = arr[index2];
         arr[index2] = temp;
     }
 
-    private static void insertionSort(int[] arr, int left, int right) {
+    private void insertionSort(int[] arr, int left, int right) {
         for (int i = left + 1; i <= right; i++) {
             int temp = arr[i];
             int j;
@@ -51,13 +56,10 @@ public class MejoraDeAlgoritmos {
         }
     }
 
-    public static void sort(int[] arr) {
-        quicksort(arr, 0, arr.length - 1);
-    }
-
     public static void main(String[] args) {
+        Ordenamiento sorter = new MejoraDeAlgoritmos();
         int[] arr = { 34, 8, 64, 51, 32, 21 };
-        sort(arr);
+        sorter.sort(arr);
         for (int num : arr) {
             System.out.print(num + " ");
         }
