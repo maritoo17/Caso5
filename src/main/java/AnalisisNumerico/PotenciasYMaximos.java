@@ -27,6 +27,7 @@ public class PotenciasYMaximos implements CalculadoraDeNumeros {
     }
 
     public static void main(String[] args) {
+        System.out.println("Este programa calcula la potencia de un número y encuentra el máximo en una lista de enteros.");
         CalculadoraDeNumeros calculator = new PotenciasYMaximos();
         int base = 2;
         int exponente = 5;
