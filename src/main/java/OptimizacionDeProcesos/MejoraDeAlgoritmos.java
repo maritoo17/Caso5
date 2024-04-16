@@ -1,5 +1,8 @@
 package OptimizacionDeProcesos;
 
+import java.util.Random;
+import java.util.Scanner;
+
 public class MejoraDeAlgoritmos implements Ordenamiento {
 
     @Override
@@ -21,7 +24,6 @@ public class MejoraDeAlgoritmos implements Ordenamiento {
                 }
             }
             swap(arr, i, right - 1);
-
             quicksort(arr, left, i - 1);
             quicksort(arr, i + 1, right);
         } else {
@@ -34,7 +36,6 @@ public class MejoraDeAlgoritmos implements Ordenamiento {
         if (arr[left] > arr[center]) swap(arr, left, center);
         if (arr[left] > arr[right]) swap(arr, left, right);
         if (arr[center] > arr[right]) swap(arr, center, right);
-
         swap(arr, center, right - 1);
         return arr[right - 1];
     }
@@ -56,10 +57,44 @@ public class MejoraDeAlgoritmos implements Ordenamiento {
         }
     }
 
+    private static int[] generateRandomArray(int size, int bound) {
+        Random random = new Random();
+        int[] arr = new int[size];
+        for (int i = 0; i < size; i++) {
+            arr[i] = random.nextInt(bound);
+        }
+        return arr;
+    }
+
     public static void main(String[] args) {
-        System.out.println("Este programa mejora el rendimiento de algoritmos de ordenamiento mediante la combinación de quicksort con sort de inserción para optimizar el ordenamiento de arreglos pequeños.");
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Este programa mejora el rendimiento de algoritmos de ordenamiento.");
+        System.out.print("Elija 1 para ingresar manualmente el arreglo o 2 para generar uno aleatoriamente: ");
+        int choice = scanner.nextInt();
+        int[] arr;
+
+        if (choice == 1) {
+            System.out.print("Ingrese la cantidad de elementos en el arreglo: ");
+            int size = scanner.nextInt();
+            arr = new int[size];
+            System.out.println("Ingrese los elementos del arreglo:");
+            for (int i = 0; i < size; i++) {
+                arr[i] = scanner.nextInt();
+            }
+        } else {
+            System.out.print("Ingrese el tamaño del arreglo aleatorio: ");
+            int size = scanner.nextInt();
+            System.out.print("Ingrese el límite superior para los valores aleatorios: ");
+            int bound = scanner.nextInt();
+            arr = generateRandomArray(size, bound);
+            System.out.print("Arreglo generado aleatoriamente: ");
+            for (int num : arr) {
+                System.out.print(num + " ");
+            }
+            System.out.println();
+        }
+
         Ordenamiento sorter = new MejoraDeAlgoritmos();
-        int[] arr = { 34, 8, 64, 51, 32, 21 };
         sorter.sort(arr);
         System.out.print("Arreglo ordenado: ");
         for (int num : arr) {

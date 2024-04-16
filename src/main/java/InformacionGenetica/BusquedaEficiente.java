@@ -1,8 +1,12 @@
 package InformacionGenetica;
 
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class BusquedaEficiente implements BusquedaDePalabras {
 
@@ -39,18 +43,32 @@ public class BusquedaEficiente implements BusquedaDePalabras {
     public static void main(String[] args) {
         System.out.println("Este programa realiza búsquedas lineales y binarias en una lista de palabras cargadas desde un archivo.");
         try {
-            List<String> words = Files.readAllLines(Paths.get("notas.txt"));
-            String searchWord = "palabra";
-            BusquedaDePalabras searcher = new BusquedaEficiente();
-            int linearResult = searcher.busquedaLineal(words, searchWord);
-            System.out.println("Resultado de Búsqueda Lineal: " + linearResult);
+            ClassLoader classLoader = BusquedaEficiente.class.getClassLoader();
+            InputStream inputStream = classLoader.getResourceAsStream("notas.txt");
+            if (inputStream == null) {
+                throw new IllegalArgumentException("file not found!");
+            } else {
+                try (InputStreamReader streamReader = new InputStreamReader(inputStream, StandardCharsets.UTF_8);
+                     BufferedReader reader = new BufferedReader(streamReader)) {
+                    List<String> words = reader.lines().collect(Collectors.toList());
+                    System.out.println("Palabras cargadas: " + words);
 
-            words.sort(String::compareTo);
-            int binaryResult = searcher.busquedaBinaria(words, searchWord);
-            System.out.println("Resultado de Búsqueda Binaria: " + binaryResult);
+                    String searchWord = "palabra";
+                    BusquedaDePalabras searcher = new BusquedaEficiente();
+                    int linearResult = searcher.busquedaLineal(words, searchWord);
+                    System.out.println("Resultado de Búsqueda Lineal: " + linearResult);
+
+                    words.sort(String::compareTo);
+                    System.out.println("Palabras ordenadas: " + words);
+
+                    int binaryResult = searcher.busquedaBinaria(words, searchWord);
+                    System.out.println("Resultado de Búsqueda Binaria: " + binaryResult);
+                }
+            }
         } catch (Exception e) {
             System.err.println("Error al leer el archivo o procesar las búsquedas:");
             e.printStackTrace();
         }
     }
 }
+

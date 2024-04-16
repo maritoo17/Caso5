@@ -10,12 +10,12 @@ public class Main {
 
     public static void main(String[] args) {
         while (true) {
-            System.out.println("Seleccione una opción:");
+            System.out.println("\n Seleccione una opción:");
             System.out.println("1. Generar combinaciones genéticas");
             System.out.println("2. Contar genes");
             System.out.println("3. Calcular potencias y encontrar máximos");
             System.out.println("4. Sumar naturales y listar números");
-            System.out.println("5. Búsqueda de palabras");
+            System.out.println("5. Búsqueda de palabras (Actualmente no disponible)");
             System.out.println("6. Gestión de fechas");
             System.out.println("7. Ordenar documentos");
             System.out.println("8. Ordenamiento de algoritmos");
